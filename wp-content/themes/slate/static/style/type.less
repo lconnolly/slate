@@ -1,0 +1,110 @@
+/*
+** Type Styles
+*/
+
+.alpha {
+    margin: 2.5rem 0;
+    text-transform: none;
+    font-weight: @weight--bold;
+    font-size: 3rem;
+    line-height: 1.0667; // 32px
+    letter-spacing: normal;
+}
+
+h1 {
+    .alpha();
+}
+
+.beta {
+    margin: 2.5rem 0;
+    font-weight: @weight--bold;
+    font-size: 2.6rem;
+    line-height: 1.0769; // 28px
+}
+
+h2 {
+    .beta();
+}
+
+.gamma {
+    margin: 2.5rem 0;
+    font-weight: @weight--bold;
+    font-size: 2.2rem;
+    line-height: 1.1366; // 25px
+}
+
+h3 {
+    .gamma();
+}
+
+.delta {
+    margin: 3.5rem 0;
+    font-weight: @weight--bold;
+    font-size: 1.8rem;
+    line-height: 1.5; // 36px
+    text-transform: uppercase;
+    letter-spacing: @spacing--wide;
+}
+
+h4 {
+    .delta();
+}
+
+.epsilon {
+    margin: 3.5rem 0;
+    font-weight: @weight--bold;
+    font-size: 1.8rem;
+    line-height: 1.1111; // 20px
+}
+
+h5 {
+    .epsilon();
+}
+
+// Paragraph Mixin
+.paragraph {
+    margin-bottom: 1.5625em;
+    font-size: 1.6rem;
+    line-height: 1.5625; // 25px
+    color: @color--text;
+}
+
+.paragraph-style {
+    font-size: 1.6rem;
+    line-height: 1.5625; // 25px
+}
+
+p {
+    .paragraph;
+}
+
+a {
+    color: @color--text-link;
+    text-decoration: none;
+
+    &:hover,
+    &:focus {
+        color: darken(@color--text-link, 10%);
+    }
+}
+
+p a {
+    .transition();
+    border-bottom: 0.2rem solid fade(@color--text-link, 15%);
+
+    &:hover,
+    &:focus {
+        border-color: fade(@color--text-link, 90%);
+    }
+}
+
+strong {
+    font-weight: @weight--bold;
+}
+
+em {
+    font-style: italic;
+}
+
+::-moz-selection { background-color: fade(@color--primary, 20%); }
+::selection { background-color: fade(@color--primary, 20%); }

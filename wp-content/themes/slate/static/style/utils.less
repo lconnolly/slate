@@ -1,0 +1,273 @@
+/*
+** Utilities
+*/
+
+
+/*
+** Media Queries
+*/
+
+// XS
+.screen--xs(@content) {
+    @media only screen and (min-width: @width--xs) {
+        @content();
+    }
+}
+
+// SM
+.screen--sm(@content) {
+    @media only screen and (min-width: @width--sm) {
+        @content();
+    }
+}
+
+// MD
+.screen--md(@content) {
+    @media only screen and (min-width: @width--md) {
+        @content();
+    }
+}
+
+// LG
+.screen--lg(@content) {
+    @media only screen and (min-width: @width--lg) {
+        @content();
+    }
+}
+
+// XL
+.screen--xl(@content) {
+    @media only screen and (min-width: @width--xl) {
+        @content();
+    }
+}
+
+
+/*
+** Helpers
+*/
+
+// Mighty Clearfix
+.clearfix {
+    zoom: 1; // For IE 6/7 (trigger hasLayout)
+
+    &:before, &:after {
+        content: "";
+        display: table;
+    }
+
+    &:after {
+       clear:both;
+    }
+}
+
+// Diable User Select
+.disable-select() {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+// Vertical Center
+.vertical-center() {
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.preserve-3d {
+    -webkit-transform-style: preserve-3d;
+    -moz-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+}
+
+// Box & Border
+.box-shadow(@shadow) {
+    -webkit-box-shadow: @shadow;
+    -moz-box-shadow:    @shadow;
+    box-shadow:         @shadow;
+}
+
+.box-shadow(@shadow1, @shadow2) {
+    -webkit-box-shadow: @shadow1, @shadow2;
+    -moz-box-shadow: @shadow1, @shadow2;
+    box-shadow: @shadow1, @shadow2;
+}
+
+.border-radius(@radius: 3px) {
+    -webkit-border-radius: @radius;
+    -moz-border-radius: @radius;
+    border-radius: @radius;
+    .background-clip();
+}
+
+.border-radiuses(@topleft: 0, @topright: 0, @bottomright: 0, @bottomleft: 0) {
+    -webkit-border-top-left-radius: @topleft;
+    -webkit-border-top-right-radius: @topright;
+    -webkit-border-bottom-right-radius: @bottomright;
+    -webkit-border-bottom-left-radius: @bottomleft;
+    -moz-border-radius-topleft: @topleft;
+    -moz-border-radius-topright: @topright;
+    -moz-border-radius-bottomright: @bottomright;
+    -moz-border-radius-bottomleft: @bottomleft;
+    border-top-left-radius: @topleft;
+    border-top-right-radius: @topright;
+    border-bottom-right-radius: @bottomright;
+    border-bottom-left-radius: @bottomleft;
+    .background-clip();
+}
+
+.background-clip(@property: padding, @property-box: padding-box) {
+    -webkit-background-clip: @property-box;
+    -moz-background-clip: @property;
+    background-clip: @property-box;
+}
+
+// Transforms & Transitions
+.transform(@arguments) {
+    -webkit-transform: @arguments;
+    -moz-transform: @arguments;
+    -o-transform: @arguments;
+    -ms-transform: @arguments;
+    transform: @arguments;
+}
+
+.transform-origin(@arguments) {
+    -webkit-transform-origin: @arguments;
+    -moz-transform-origin: @arguments;
+    -o-transform-origin: @arguments;
+    -ms-transform-origin: @arguments;
+    transform-origin: @arguments;
+}
+
+.scale(@horiz: 2, @vert: 2){
+    .transform(scale(@horiz, @vert));
+}
+
+.transition(@property: all, @duration: 250ms, @ease: cubic-bezier(.60,.28,.23,.98)) {
+    -webkit-transition: @property @duration @ease;
+    -moz-transition: @property @duration @ease;
+    -o-transition: @property @duration @ease;
+    transition: @property @duration @ease;
+}
+
+// Typography
+.lining-figures {
+    -moz-font-feature-settings: "lnum";
+    -ms-font-feature-settings: "lnum";
+    -webkit-font-feature-settings: "lnum";
+    -o-font-feature-settings: "lnum";
+    font-feature-settings: "lnum";
+}
+
+// Placeholders
+.placeholder(@rules) {
+    &::-webkit-input-placeholder {
+        @rules();
+    }
+    &:-moz-placeholder {
+        @rules();
+    }
+    &::-moz-placeholder {
+        @rules();
+    }
+    &:-ms-input-placeholder {
+        @rules();
+    }
+}
+
+
+/*
+** Flexbox Toolkit
+*/
+
+// Display: Flex
+.flex-display {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+// Display: Inline Flex
+.flex-display-inline {
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -moz-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+}
+
+// Flex Shorthand
+.flex(@grow: 1, @shrink: null, @basis: null) {
+  @fg-boxflex: @grow;
+
+  -webkit-box-flex: @fg-boxflex;
+  -webkit-flex: @grow @shrink @basis;
+  -moz-box-flex: @fg-boxflex;
+  -moz-flex: @grow @shrink @basis;
+  -ms-flex: @grow @shrink @basis;
+  flex: @grow @shrink @basis;
+}
+
+// Direction
+.flex-direction(@val) {
+  -webkit-flex-direction: @val;
+  flex-direction: @val;
+}
+
+// Wrap
+.flex-wrap(@val) {
+  -webkit-flex-wrap: @val;
+  -ms-flex-wrap: @val;
+  flex-wrap: @val;
+}
+
+// Order
+.flex-order(@int: 0) {
+  -webkit-box-ordinal-group: @int + 1;
+  -webkit-order: @int;
+  -moz-order: @int;
+  -ms-flex-order: @int;
+  order: @int;
+}
+
+// Flex-basis
+.flex-basis(@val: auto) {
+  -webkit-flex-basis: @val;
+  -moz-flex-basis: @val;
+  -ms-flex-preferred-size: @val;
+  flex-basis: @val;
+}
+
+// Justify-content
+.flex-justify-content(@val: flex-start) {
+  -webkit-justify-content: @val;
+  -moz-justify-content: @val;
+  justify-content: @val;
+}
+
+// Align-content
+.flex-align-content(@val: stretch) {
+  -webkit-align-content: @val;
+  -moz-align-content: @val;
+  align-content: @val;
+}
+
+// Align-items
+.flex-align-items(@val: stretch) {
+  -webkit-align-items: @val;
+  -moz-align-items: @val;
+  align-items: @val;
+}
+
+// Align-self
+.flex-align-self(@val: auto) {
+  -webkit-align-self: @val;
+  -moz-align-self: @val;
+  align-self: @val;
+}
